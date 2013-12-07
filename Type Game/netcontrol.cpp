@@ -51,15 +51,15 @@ INT_PTR CALLBACK Connect(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 		EnableWindow(GetDlgItem(hDlg, IDOK), FALSE);
 		if(!g_netCtrl.initNetwork(hDlg, s_hMyIP))
 		{
-			MessageBoxA(hDlg, "Çë¼ì²éÊÇ·ñ½ûÓÃÍøÂç", "´ò¿ªÍøÂçÊ§°Ü", MB_ICONERROR | MB_OK);
+			MessageBoxA(hDlg, "è¯·æ£€æŸ¥æ˜¯å¦ç¦ç”¨ç½‘ç»œ", "æ‰“å¼€ç½‘ç»œå¤±è´¥", MB_ICONERROR | MB_OK);
 			EndDialog(hDlg, 0);
 		}
 		SetDlgItemInt(hDlg, IDC_OLMYPORT, DF_SERVERPORT, FALSE);
 		SetDlgItemInt(hDlg, IDC_OLSERVERPORT, DF_SERVERPORT, FALSE);
-		addText("»¶Ó­Ê¹ÓÃÁª»úÄ£Ê½! Çë°´½çÃæÌáÊ¾²Ù×÷!\r\n"
-			"Áª»úÄ£Ê½ÊÇÖ÷»úÓë¶à¸ö¿Í»§¶ËÖ®¼äµÄ½ÏÁ¿,\r\n"
-			"µ±Ö÷»úÓÎÏ·Ê§°Ü»òÕßËùÓĞ¿Í»§»úÈ«²¿Ê§°ÜÊ±£¬¾ö³öÊ¤¸º¨t(£ş¨Œ£ş)¨r"
-			"\r\n\r\n\t\t×£ÄúÓÎÏ·Óä¿ì -- By wysaid\r\n");
+		addText("æ¬¢è¿ä½¿ç”¨è”æœºæ¨¡å¼! è¯·æŒ‰ç•Œé¢æç¤ºæ“ä½œ!\r\n"
+			"è”æœºæ¨¡å¼æ˜¯ä¸»æœºä¸å¤šä¸ªå®¢æˆ·ç«¯ä¹‹é—´çš„è¾ƒé‡,\r\n"
+			"å½“ä¸»æœºæ¸¸æˆå¤±è´¥æˆ–è€…æ‰€æœ‰å®¢æˆ·æœºå…¨éƒ¨å¤±è´¥æ—¶ï¼Œå†³å‡ºèƒœè´Ÿâ•°(ï¿£â–½ï¿£)â•®"
+			"\r\n\r\n\t\tç¥æ‚¨æ¸¸æˆæ„‰å¿« -- By wysaid\r\n");
 		return TRUE;
 	case WM_COMMAND:
 		switch(LOWORD(wParam))
@@ -89,7 +89,7 @@ INT_PTR CALLBACK Connect(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 				textlen = GetDlgItemTextA(hDlg, IDC_OLMSG, szText, BUFFERSIZE);
 				if(textlen == 0)
 				{
-					MessageBoxA(hDlg, "µ°ÌÛÁËÂğ,ÉÙÄê?\r\nÄªËµ¿Õ»°!", "ÏÈÈ¥ºÈ¿Ú²è?", MB_ICONWARNING | MB_OK);
+					MessageBoxA(hDlg, "è›‹ç–¼äº†å—,å°‘å¹´?\r\nè«è¯´ç©ºè¯!", "å…ˆå»å–å£èŒ¶?", MB_ICONWARNING | MB_OK);
 					break;
 				}
 				buflen = sprintf(szBuffer + SIZE_DIRECTIVE, "\r\n%s: ", g_netCtrl.getMyName());
@@ -102,7 +102,7 @@ INT_PTR CALLBACK Connect(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			}
 			break;
 		case IDC_OLBTNCONNECT:
-			addText("\r\nÕıÔÚÁ¬½Óµ½Ö¸¶¨Ö÷»ú£¬ÇëÄÍĞÄµÈºò...");
+			addText("\r\næ­£åœ¨è¿æ¥åˆ°æŒ‡å®šä¸»æœºï¼Œè¯·è€å¿ƒç­‰å€™...");
 			{
 				SendMessage(s_hServerIP, IPM_GETADDRESS, NULL, (LPARAM)&ip);
 				port = GetDlgItemInt(hDlg, IDC_OLSERVERPORT, NULL, FALSE);
@@ -115,21 +115,21 @@ INT_PTR CALLBACK Connect(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 					EnableWindow(s_hBTNConnect, FALSE);
 					EnableWindow(s_hServerIP, FALSE);
 					SendMessage(s_hServerPort, EM_SETREADONLY, TRUE, 0);
-					addText("\r\nÁ¬½ÓÖ÷»ú³É¹¦, ÕıÔÚµÈ´ıÖ÷»úÆô¶¯ÓÎÏ·! ÏÖÔÚÄã¿ÉÒÔºÍ¼ÓÈëÓÎÏ·µÄÍæ¼ÒÁÄÁÄÌì~ ^_^");
+					addText("\r\nè¿æ¥ä¸»æœºæˆåŠŸ, æ­£åœ¨ç­‰å¾…ä¸»æœºå¯åŠ¨æ¸¸æˆ! ç°åœ¨ä½ å¯ä»¥å’ŒåŠ å…¥æ¸¸æˆçš„ç©å®¶èŠèŠå¤©~ ^_^");
 					s_thread = (HANDLE)_beginthread(wait4Server, 0, &s_bReady);
 				}
 				else
 				{
-					addText("\r\nÁ¬½ÓÖ÷»úÊ§°Ü...");
+					addText("\r\nè¿æ¥ä¸»æœºå¤±è´¥...");
 				}
 			}
 			break;
 		case IDC_OLBTNCREATE:
-			addText("\r\nÕıÔÚ´´½¨Ö÷»ú...");
+			addText("\r\næ­£åœ¨åˆ›å»ºä¸»æœº...");
 			{
 				port = GetDlgItemInt(hDlg, IDC_OLMYPORT, NULL, FALSE);
 				if(port < 100)
-					MessageBoxA(hDlg, "ÇëÊäÈëÕıÈ·µÄÖ÷»ú¶Ë¿ÚºÅ(Ä¬ÈÏ: 8900)", "¶Ë¿ÚºÅĞ¡ÓÚ100ÁË", MB_ICONWARNING | MB_OK);
+					MessageBoxA(hDlg, "è¯·è¾“å…¥æ­£ç¡®çš„ä¸»æœºç«¯å£å·(é»˜è®¤: 8900)", "ç«¯å£å·å°äº100äº†", MB_ICONWARNING | MB_OK);
 				else if(g_netCtrl.createHost(port))
 				{
 					s_bReady = true;
@@ -138,10 +138,10 @@ INT_PTR CALLBACK Connect(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 					EnableWindow(s_hBTNMsg, TRUE);
 					SendMessage(s_hMyPort, EM_SETREADONLY, TRUE, 0);
 					EnableWindow(s_hBTNCreate, FALSE);
-					addText("\r\nÖ÷»ú´´½¨³É¹¦! ÕıÔÚµÈ´ıÓÃ»§µÄ¼ÓÈë!");
+					addText("\r\nä¸»æœºåˆ›å»ºæˆåŠŸ! æ­£åœ¨ç­‰å¾…ç”¨æˆ·çš„åŠ å…¥!");
 					s_thread = (HANDLE)_beginthread(wait4Client, 0, &s_bReady);
 				}
-				else addText("\r\nÍøÂç³õÊ¼»¯Ê§°Ü...");
+				else addText("\r\nç½‘ç»œåˆå§‹åŒ–å¤±è´¥...");
 			}
 			break;
 		case IDOK:
@@ -209,7 +209,7 @@ bool NetControl::initNetwork(HWND hTitle, HWND hAddr)
 	pHost = gethostbyname(m_myName);
 	m_myAddress = *(DWORD*)*pHost->h_addr_list;
 	strcpy(m_myName, pHost->h_name);
-	sprintf(buffer, "ÎÒµÄÖ÷»úÃû: %s", m_myName);
+	sprintf(buffer, "æˆ‘çš„ä¸»æœºå: %s", m_myName);
 	SetWindowTextA(hTitle, buffer);
 	SetWindowTextA(hAddr, inet_ntoa(*(IN_ADDR*)*pHost->h_addr_list));
 	return true;
@@ -250,7 +250,7 @@ bool NetControl::createHost(unsigned short port)
 {
 	DWORD optval = 1;
 	SOCKADDR_IN serverAddr;
-	addText("\r\nÍøÂç³õÊ¼»¯ÖĞ...");
+	addText("\r\nç½‘ç»œåˆå§‹åŒ–ä¸­...");
 	RET_COMP_SE(m_listenfd = socket(AF_INET, SOCK_STREAM, 0));
 	RET_COMP_SE(setsockopt(m_listenfd, SOL_SOCKET, SO_REUSEADDR, (LPCSTR)&optval, sizeof(DWORD)));
 
@@ -302,7 +302,7 @@ void NetControl::statusSync()
 			if(newfd != SOCKET_ERROR)
 			{
 				*(Directive*)szBuffer = OL_MESSAGE;
-				send(newfd, szBuffer, SIZE_DIRECTIVE + sprintf(szBuffer + SIZE_DIRECTIVE, "\r\nÓÎÏ·ÒÑ¿ªÊ¼,ÎŞ·¨½ÓÈë..."), 0);
+				send(newfd, szBuffer, SIZE_DIRECTIVE + sprintf(szBuffer + SIZE_DIRECTIVE, "\r\næ¸¸æˆå·²å¼€å§‹,æ— æ³•æ¥å…¥..."), 0);
 				closesocket(newfd);
 			}
 		}
@@ -386,15 +386,15 @@ void NetControl::dealMsgs()
 			SOCKET newfd = accept(m_listenfd, (SOCKADDR*)&userAddr, &addrLen);
 			if(newfd == SOCKET_ERROR)
 			{
-				addText("\r\nÒ»¸öĞÂÓÃ»§¼ÓÈëÊ±·¢Éú´íÎó...");
+				addText("\r\nä¸€ä¸ªæ–°ç”¨æˆ·åŠ å…¥æ—¶å‘ç”Ÿé”™è¯¯...");
 				return;
 			}
 
-			addText("\r\nÓĞĞÂÓÃ»§³¢ÊÔ¼ÓÈë...");
+			addText("\r\næœ‰æ–°ç”¨æˆ·å°è¯•åŠ å…¥...");
 			puser = findUserBySocket(SOCKET_ERROR);
 			if(puser == NULL)
 			{
-				send(newfd, szSend, sprintf(szSend, "\r\n×î¶àÔÊĞí%d¸öÍæ¼Ò¼ÓÈë...·şÎñÆ÷ÈËÂúÁË...", BACKLOG), 0);
+				send(newfd, szSend, sprintf(szSend, "\r\næœ€å¤šå…è®¸%dä¸ªç©å®¶åŠ å…¥...æœåŠ¡å™¨äººæ»¡äº†...", BACKLOG), 0);
 				addText(szSend);
 				closesocket(newfd);
 			}
@@ -404,8 +404,8 @@ void NetControl::dealMsgs()
 				puser->addr = userAddr.sin_addr;
 				puser->port = ntohs(userAddr.sin_port);
 				puser->sockfd = newfd;
-				send(newfd, szSend, sprintf(szSend, "\r\nÖ÷»ú %s »¶Ó­ÄãµÄ¼ÓÈë!", m_myName), 0);
-				sprintf(szSend, "ĞÂÓÃ»§IP:%s , Port: %d", inet_ntoa(puser->addr), puser->port);
+				send(newfd, szSend, sprintf(szSend, "\r\nä¸»æœº %s æ¬¢è¿ä½ çš„åŠ å…¥!", m_myName), 0);
+				sprintf(szSend, "æ–°ç”¨æˆ·IP:%s , Port: %d", inet_ntoa(puser->addr), puser->port);
 				addText(szSend);
 				FD_SET(newfd, &m_pool.readSet);
 				if(newfd > m_pool.maxfd) m_pool.maxfd = newfd;
@@ -420,7 +420,7 @@ void NetControl::dealMsgs()
 			{
 				if(puser != NULL)
 				{
-					buflen = sprintf(szSend + SIZE_DIRECTIVE, "\r\nÓÃ»§ %s ( %s : %d ) ÍË³ö...", puser->name, inet_ntoa(puser->addr), puser->port);
+					buflen = sprintf(szSend + SIZE_DIRECTIVE, "\r\nç”¨æˆ· %s ( %s : %d ) é€€å‡º...", puser->name, inet_ntoa(puser->addr), puser->port);
 					addText(szSend + SIZE_DIRECTIVE);
 					*puser->name = 0;
 					puser->sockfd = SOCKET_ERROR;
@@ -436,7 +436,7 @@ void NetControl::dealMsgs()
 				{
 					szRecv[127 + SIZE_DIRECTIVE] = 0;
 					strcpy(puser->name, szRecv + SIZE_DIRECTIVE);
-					buflen = sprintf(szSend + SIZE_DIRECTIVE, "\r\nĞÂÓÃ»§ %s ¼ÓÈë ...", puser->name);
+					buflen = sprintf(szSend + SIZE_DIRECTIVE, "\r\næ–°ç”¨æˆ· %s åŠ å…¥ ...", puser->name);
 					addText(szSend + SIZE_DIRECTIVE);
 					sendMsg(szSend, buflen + SIZE_DIRECTIVE);
 				}
@@ -553,10 +553,10 @@ void NetControl::setStartTitle()
 {
 	string s;
 	if(m_isServer)
-		s = "·şÎñÆ÷(";
-	else s = "¿Í»§»ú(";
+		s = "æœåŠ¡å™¨(";
+	else s = "å®¢æˆ·æœº(";
 	s += m_myName;
-	s += "): Áª»úÄ£Ê½ÓÎÏ·ÖĞ...";
+	s += "): è”æœºæ¨¡å¼æ¸¸æˆä¸­...";
 	g_hge->System_SetState(HGE_TITLE, s.c_str());	
 }
 
@@ -575,13 +575,13 @@ void wait4Client(void* arg)
 	bool* bRun = (bool*)arg;
 	if(!*bRun || !g_netCtrl.isServer()) _endthread();
 	g_netCtrl.initPool();
-	addText("\r\nµÈ´ıÆäËûÍæ¼Ò¼ÓÈëÖĞ... \r\nÇë½«ÏÂ·½±¾»úIPºÍ¶Ë¿Ú¸æËßÏëÒª¼ÓÈëµÄÓÃ»§!");
+	addText("\r\nç­‰å¾…å…¶ä»–ç©å®¶åŠ å…¥ä¸­... \r\nè¯·å°†ä¸‹æ–¹æœ¬æœºIPå’Œç«¯å£å‘Šè¯‰æƒ³è¦åŠ å…¥çš„ç”¨æˆ·!");
 	
 	while(*bRun)
 	{
 		if(g_netCtrl.waitForClient(25000) == SOCKET_ERROR)
 		{
-			addText("\r\nÖ÷»úÒÑ¶Ï¿ªÁ¬½Ó...");
+			addText("\r\nä¸»æœºå·²æ–­å¼€è¿æ¥...");
 			break;
 		}
 		g_netCtrl.dealMsgs();
@@ -590,7 +590,7 @@ void wait4Client(void* arg)
 		else EnableWindow(GetDlgItem(g_hDlg, IDOK), FALSE);
 	}
 #ifdef _DEBUG
-	g_hge->System_SetState(HGE_TITLE, "Ö÷»úÁ¬½ÓÏß³ÌÒÑÍË³ö");
+	g_hge->System_SetState(HGE_TITLE, "ä¸»æœºè¿æ¥çº¿ç¨‹å·²é€€å‡º");
 #endif
 	_endthread();
 }
@@ -601,7 +601,7 @@ void wait4Server(void* arg)
 	char szBuffer[BUFFERSIZE];
 	int len;
 	if(!*bRun || g_netCtrl.isServer()) _endthread();
-	addText("\r\n¿ªÊ¼ÁÄÌì°É!");
+	addText("\r\nå¼€å§‹èŠå¤©å§!");
 
 	while(*bRun)
 	{
@@ -609,7 +609,7 @@ void wait4Server(void* arg)
 		szBuffer[len] = 0;
 		if(len == SOCKET_ERROR)
 		{
-			addText("\r\nÖ÷»úÒÑ¹Ø±Õ»òÆäËûÔ­Òò£¬ÒÑºÍÖ÷»ú¶Ï¿ªÁ¬½Ó...");
+			addText("\r\nä¸»æœºå·²å…³é—­æˆ–å…¶ä»–åŸå› ï¼Œå·²å’Œä¸»æœºæ–­å¼€è¿æ¥...");
 			EnableWindow(GetDlgItem(g_hDlg, IDC_OLCONNECTSERVER), TRUE);
 			EnableWindow(GetDlgItem(g_hDlg, IDC_OLCREATESERVER), TRUE);
 			SendMessage(g_hDlg, WM_COMMAND, IDC_OLCONNECTSERVER, 0);
@@ -627,7 +627,7 @@ void wait4Server(void* arg)
 
 	}
 #ifdef _DEBUG
-	g_hge->System_SetState(HGE_TITLE, "Ö÷»úÁ¬½ÓÏß³ÌÒÑÍË³ö");
+	g_hge->System_SetState(HGE_TITLE, "ä¸»æœºè¿æ¥çº¿ç¨‹å·²é€€å‡º");
 #endif
 	_endthread();
 }
@@ -698,7 +698,7 @@ void clientFrameSync(void* arg)
 	{
 		if(!g_netCtrl.clientSync())
 		{
-			MessageBoxA(g_hwnd, "ÄãÒÑµôÏß£¬ÇëÖØĞÂÁ¬½Ó~", "Äã±¯¾çÀ²", MB_OK | MB_ICONERROR);
+			MessageBoxA(g_hwnd, "ä½ å·²æ‰çº¿ï¼Œè¯·é‡æ–°è¿æ¥~", "ä½ æ‚²å‰§å•¦", MB_OK | MB_ICONERROR);
 			g_netCtrl.shutdownNetwork();
 			g_game->resetEscape();
 			g_hge->System_SetState(HGE_FRAMEFUNC, menuFrameFunc);
@@ -730,7 +730,7 @@ void serverFrameSync(void* arg)
 		}
 		else if(ret == SOCKET_ERROR)
 		{
-			MessageBoxA(g_hwnd, "·şÎñÆ÷ÍøÂç³öÏÖ´íÎó£¬ÇëÖØĞÂ¿ªÊ¼ÓÎÏ·~", "Äã±¯¾çÀ²", MB_OK | MB_ICONERROR);
+			MessageBoxA(g_hwnd, "æœåŠ¡å™¨ç½‘ç»œå‡ºç°é”™è¯¯ï¼Œè¯·é‡æ–°å¼€å§‹æ¸¸æˆ~", "ä½ æ‚²å‰§å•¦", MB_OK | MB_ICONERROR);
 			g_netCtrl.shutdownNetwork();
 			g_game->resetEscape();
 			g_hge->System_SetState(HGE_FRAMEFUNC, menuFrameFunc);

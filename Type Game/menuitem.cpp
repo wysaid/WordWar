@@ -205,7 +205,7 @@ bool initmenu()
 
 	if(!(g_quad.tex && g_cursorTex && g_menuSnd && g_parTex))
 	{
-		MessageBoxA(g_hwnd,"¼ÓÔØ×ÊÔ´Ê§°Ü!","Çë¼ì²éµ±Ç°ÎÄ¼ş¼ĞÏÂÊÇ·ñ´æÔÚËùĞè×ÊÔ´",0);
+		MessageBoxA(g_hwnd,"åŠ è½½èµ„æºå¤±è´¥!","è¯·æ£€æŸ¥å½“å‰æ–‡ä»¶å¤¹ä¸‹æ˜¯å¦å­˜åœ¨æ‰€éœ€èµ„æº",0);
 		return false;
 	}
 	g_quad.blend = BLEND_ALPHABLEND | BLEND_COLORMUL | BLEND_NOZWRITE;
@@ -407,7 +407,7 @@ bool initPracticeMode()
 	g_killedWordsNum = 0;
 	g_timeLeastLimit = 0.5f;
 	g_delay = DELAY_TIME;
-	g_hge->System_SetState(HGE_TITLE, "Á·Ï°Ä£Ê½£¡ ÇëÒ»¸ö¸ö¸ÉµôÆÁÄ»ÉÏµÄµ¥´Ê£¡");
+	g_hge->System_SetState(HGE_TITLE, "ç»ƒä¹ æ¨¡å¼ï¼ è¯·ä¸€ä¸ªä¸ªå¹²æ‰å±å¹•ä¸Šçš„å•è¯ï¼");
 	g_hge->Effect_PlayEx(g_effect[BGSOUND], 100, 0, 1.0f, true);
 	return true;
 }
@@ -427,7 +427,7 @@ bool initStageMode()
 	g_missedWordsNum = 0;
 	g_killedWordsNum = 0;
 	g_deathSpeed = 1.1f;
-	g_hge->System_SetState(HGE_TITLE, "ÓÎÏ·Ä£Ê½£¡ ÇëÒ»Æ¬Ò»Æ¬¸ÉµôÆÁÄ»ÉÏµÄµ¥´Ê£¡");
+	g_hge->System_SetState(HGE_TITLE, "æ¸¸æˆæ¨¡å¼ï¼ è¯·ä¸€ç‰‡ä¸€ç‰‡å¹²æ‰å±å¹•ä¸Šçš„å•è¯ï¼");
 	g_hge->Effect_PlayEx(g_effect[CHALLENGE], 100, 0, 1.0f, true);
 	return true;
 }
@@ -447,7 +447,7 @@ bool  initOnlineMode()
 	g_missedWordsNum = 0;
 	g_killedWordsNum = 0;
 	g_deathSpeed = 1.1f;
-	g_hge->System_SetState(HGE_TITLE, "Çë°´½çÃæÁ¬½ÓÆäËûÓÃ»§");
+	g_hge->System_SetState(HGE_TITLE, "è¯·æŒ‰ç•Œé¢è¿æ¥å…¶ä»–ç”¨æˆ·");
 //	g_hge->Effect_PlayEx(g_effect[CHALLENGE], 100, 0, 1.0f, true);
 	return true;
 }
@@ -455,7 +455,7 @@ bool  initOnlineMode()
 bool initAbout()
 {
 	if(g_about == NULL) g_about = new About();
-	g_hge->System_SetState(HGE_TITLE, "¹ØÓÚÎÒ£¬¹ØÓÚ±¾ÓÎÏ·~ Ğ»Ğ»Ï²»¶£¡");
+	g_hge->System_SetState(HGE_TITLE, "å…³äºæˆ‘ï¼Œå…³äºæœ¬æ¸¸æˆ~ è°¢è°¢å–œæ¬¢ï¼");
 	return true;
 }
 
@@ -464,7 +464,7 @@ bool settings()
 	if(g_set == NULL) g_set = new Settings();
 	g_fnt1->SetScale(1.0f);
 	g_fnt1->SetColor(0xFFEFE060);
-	g_hge->System_SetState(HGE_TITLE, "Çë°´F1-F5½øĞĞÉèÖÃ£¡£¡");
+	g_hge->System_SetState(HGE_TITLE, "è¯·æŒ‰F1-F5è¿›è¡Œè®¾ç½®ï¼ï¼");
 	return true;
 }
 

@@ -166,7 +166,7 @@ bool settingRender()
 			g_hge->Effect_Play(g_effect[HAPPY]);
 			g_hge->System_SetState(HGE_FRAMEFUNC, menuFrameFunc);
 			g_hge->System_SetState(HGE_RENDERFUNC, menuRenderFunc);
-			g_hge->System_SetState(HGE_TITLE, "»¶ÀÖÓ¢Óï´ò×Ö¿ñ");
+			g_hge->System_SetState(HGE_TITLE, "æ¬¢ä¹è‹±è¯­æ‰“å­—ç‹‚");
 			g_gui->Enter();
 		}
 		delete g_set;

@@ -5,7 +5,7 @@
  * blog			http://blog.wysaid.org
  * date			2012-03-16
  * 
- * modify		Some code of "menuitem.h°¢menuitem.cpp" is from the example of the HGE.
+ * modify		Some code of "menuitem.h„ÄÅmenuitem.cpp" is from the example of the HGE.
 */
 
 #pragma once

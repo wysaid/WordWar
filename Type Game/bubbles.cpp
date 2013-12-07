@@ -48,7 +48,7 @@ void Ball::update()
 #ifdef _DEBUG
 
 	if(m_x < .0f || m_x > SCR_WIDTH || m_y < .0f || m_y > SCR_HEIGHT)
-		g_hge->System_SetState(HGE_TITLE, "检测到某些点出界了!!");
+		g_hge->System_SetState(HGE_TITLE, "妫�娴嬪埌鏌愪簺鐐瑰嚭鐣屼簡!!");
 
 #endif
 }
