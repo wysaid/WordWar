@@ -1,7 +1,7 @@
 <h1>WordWar</h1>
 
 <p>
-Tips: if you're using VS2015, please add "legacy_stdio_definitions.lib" in the project dependency.
+Tips: if you're using VS2015, please add "legacy_stdio_definitions.lib" in the project dependency.<br>
 提示: 如果你使用的IDE是VS2015, 请在链接依赖库里面加上 "legacy_stdio_definitions.lib", 否则可能无法编译成功。
 </p>
 
